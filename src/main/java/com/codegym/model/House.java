@@ -7,17 +7,34 @@ public class House {
     private String designStyle;
     private String address;
     private int maxPeople;
-    private String basicUtilityId;
+    private String basicUtility;
     private int standardId;
     private String status;
     private String image;
     private float price;
     private String description;
-    private String extraUtilityId;
+    private String extraUtility;
     private float evalue;
     private int countsOfOder;
 
     public House() {
+    }
+
+    public House(String name, int typeId, String designStyle, String address, int maxPeople, String basicUtility, int standardId, String status, String image, float price, String description, String extraUtility, float evalue, int countsOfOder) {
+        this.name = name;
+        this.typeId = typeId;
+        this.designStyle = designStyle;
+        this.address = address;
+        this.maxPeople = maxPeople;
+        this.basicUtility = basicUtility;
+        this.standardId = standardId;
+        this.status = status;
+        this.image = image;
+        this.price = price;
+        this.description = description;
+        this.extraUtility = extraUtility;
+        this.evalue = evalue;
+        this.countsOfOder = countsOfOder;
     }
 
     public House(int id, String name, int typeId, String designStyle, String address, int maxPeople, String basicUtilityId, int standardId, String status, String image, float price, String description, String extraUtilityId, float evalue, int countsOfOder) {
@@ -27,13 +44,13 @@ public class House {
         this.designStyle = designStyle;
         this.address = address;
         this.maxPeople = maxPeople;
-        this.basicUtilityId = basicUtilityId;
+        this.basicUtility = basicUtilityId;
         this.standardId = standardId;
         this.status = status;
         this.image = image;
         this.price = price;
         this.description = description;
-        this.extraUtilityId = extraUtilityId;
+        this.extraUtility = extraUtilityId;
         this.evalue = evalue;
         this.countsOfOder = countsOfOder;
     }
@@ -86,12 +103,12 @@ public class House {
         this.maxPeople = maxPeople;
     }
 
-    public String getBasicUtilityId() {
-        return basicUtilityId;
+    public String getBasicUtility() {
+        return basicUtility;
     }
 
-    public void setBasicUtilityId(String basicUtilityId) {
-        this.basicUtilityId = basicUtilityId;
+    public void setBasicUtility(String basicUtility) {
+        this.basicUtility = basicUtility;
     }
 
     public int getStandardId() {
@@ -134,12 +151,12 @@ public class House {
         this.description = description;
     }
 
-    public String getExtraUtilityId() {
-        return extraUtilityId;
+    public String getExtraUtility() {
+        return extraUtility;
     }
 
-    public void setExtraUtilityId(String extraUtilityId) {
-        this.extraUtilityId = extraUtilityId;
+    public void setExtraUtility(String extraUtility) {
+        this.extraUtility = extraUtility;
     }
 
     public float getEvalue() {
