@@ -7,6 +7,6 @@ public interface IGeneralService<T> {
     List<T> findAll();
     void save(T t) throws SQLException;
     boolean update(T t)throws SQLException;
-    void delete(T t) throws SQLException;
+    boolean delete(T t) throws SQLException;
     T findById(int id);
 }

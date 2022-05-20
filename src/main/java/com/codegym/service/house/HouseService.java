@@ -100,8 +100,13 @@ public class HouseService implements IHouseService{
         }
 
     @Override
-    public void delete(House house) throws SQLException {
-
+    public boolean delete(House house) throws SQLException {
+        boolean rowDeleted;
+        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
+            statement.setInt(1, id);
+            rowDeleted = statement.executeUpdate() > 0;
+        }
+        return rowDeleted;
     }
 
     @Override
