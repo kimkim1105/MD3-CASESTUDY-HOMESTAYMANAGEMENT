@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "HouseServlet", value = "/houses")
@@ -27,9 +28,25 @@ public class HouseServlet extends HttpServlet {
             case "edit":
                 showEditHouse(request,response);
                 break;
+            case "delete":
+                try {
+                    deleteHouse(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             default:
                 showListHouse(request, response);
         }
+    }
+
+    private void deleteHouse(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        houseService.delete(id);
+
+        List<House> houses = houseService.findAll();
+        request.setAttribute("houses", houses);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("house/list.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void showEditHouse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,8 +63,14 @@ public class HouseServlet extends HttpServlet {
     }
 
     private void showListHouse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        List<House> houses;
+        if (name != null && name != ""){
+            houses = houseService.findByName(name);
+        } else {
+            houses = houseService.findAll();
+        }
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("house/list.jsp");
-        List<House> houses = houseService.findAll();
         request.setAttribute("houses",houses);
         requestDispatcher.forward(request,response);
     }

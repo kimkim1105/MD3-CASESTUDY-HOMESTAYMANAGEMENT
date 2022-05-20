@@ -100,9 +100,9 @@ public class HouseService implements IHouseService{
         }
 
     @Override
-    public boolean delete(House house) throws SQLException {
+    public boolean delete(int id) throws SQLException {
         boolean rowDeleted;
-        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
+        try (Connection connection = basicRepository.getConnection(); PreparedStatement statement = connection.prepareStatement("delete from house where id = ?");) {
             statement.setInt(1, id);
             rowDeleted = statement.executeUpdate() > 0;
         }
@@ -138,5 +138,36 @@ public class HouseService implements IHouseService{
         } catch (SQLException e) {
             e.printStackTrace();
         } return house;
+    }
+
+    @Override
+    public List<House> findByName(String nameSearch) {
+        List<House> houses = new ArrayList<>();
+        try (Connection connection = basicRepository.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("select*from house where name like ?");) {
+            preparedStatement.setString(1, "%" + nameSearch + "%");
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int typeID = rs.getInt("typeID");
+                String designstyle = rs.getString("designstyle");
+                String address = rs.getString("address");
+                int maxpeople = Integer.parseInt(rs.getString("maxpeople"));
+                String basicUtilityId = rs.getString("basicUtility");
+                int standardId = Integer.parseInt(rs.getString("standardId"));
+                String status = rs.getString("status");
+                String image = rs.getString("image");
+                float price = rs.getFloat("price");
+                String description = rs.getString("description");
+                String extraUtilityId = rs.getString("extraUtility");
+                float evalue = rs.getFloat("evalue");
+                int countsOfOrder = rs.getInt("countsOfOrder");
+                houses.add(new House(id,name,typeID,designstyle,address,maxpeople,basicUtilityId,standardId,status,image,price,description,extraUtilityId,evalue,countsOfOrder));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return houses;
     }
 }

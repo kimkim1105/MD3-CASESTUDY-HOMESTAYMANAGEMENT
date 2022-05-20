@@ -18,6 +18,14 @@
     <h2>
         <a href="/houses?action=create">Add New Customer</a>
     </h2>
+    <form action="/houses">
+        <input type="text" name="name" placeholder="name">
+        <input type="submit" value="Search">
+
+        <%--        <h2>--%>
+        <%--            <button><a href="/users?action=orderby">Order by Name</a></button>--%>
+        <%--        </h2>--%>
+    </form>
 </center>
 <div align="center">
     <table border="1" cellpadding="5">
