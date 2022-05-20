@@ -1,8 +1,11 @@
 package com.codegym.controller;
 
 import com.codegym.model.House;
+import com.codegym.model.Standard;
 import com.codegym.service.house.HouseService;
 import com.codegym.service.house.IHouseService;
+import com.codegym.service.standard.IStandardService;
+import com.codegym.service.standard.StandardService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -15,6 +18,7 @@ import java.util.List;
 @WebServlet(name = "HouseServlet", value = "/houses")
 public class HouseServlet extends HttpServlet {
     IHouseService houseService = new HouseService();
+    IStandardService standardService = new StandardService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -70,8 +74,10 @@ public class HouseServlet extends HttpServlet {
         } else {
             houses = houseService.findAll();
         }
+        List<Standard> standards= standardService.findAll();
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("house/list.jsp");
         request.setAttribute("houses",houses);
+        request.setAttribute("standards",standards);
         requestDispatcher.forward(request,response);
     }
 

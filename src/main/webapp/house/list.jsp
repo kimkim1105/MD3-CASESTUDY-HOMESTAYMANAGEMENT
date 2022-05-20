@@ -22,16 +22,20 @@
         <input type="text" name="name" placeholder="name">
         <input type="submit" value="Search">
     </form>
+<div>
+    <div style="width: 50%; float:left">
+    <h2>Standard</h2>
 
-<%--    <div style="width: 20%; float:left">--%>
-<%--    <table>--%>
+<c:forEach items="${standard}" var="standard" >
+        <a href="">${standard.name} </a>
+</c:forEach>
+</div>
 
-<%--    </table>--%>
-<%--</div>--%>
-
-<%--    <div style="width: 80%; float:right">--%>
-
-<%--    </div>--%>
+    <div style="width: 50%; float:right">
+        <h2>Type</h2>
+        <a>Link</a>
+    </div>
+</div>
 </center>
 <div align="center">
     <table border="1" cellpadding="5">
