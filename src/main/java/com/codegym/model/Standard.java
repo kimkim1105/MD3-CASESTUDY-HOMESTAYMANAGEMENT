@@ -1,13 +1,13 @@
 package com.codegym.model;
 
-public class Satndard {
+public class Standard {
     private int id;
     private String name;
 
-    public Satndard() {
+    public Standard() {
     }
 
-    public Satndard(int id, String name) {
+    public Standard(int id, String name) {
         this.id = id;
         this.name = name;
     }

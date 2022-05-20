@@ -21,11 +21,17 @@
     <form action="/houses">
         <input type="text" name="name" placeholder="name">
         <input type="submit" value="Search">
-
-        <%--        <h2>--%>
-        <%--            <button><a href="/users?action=orderby">Order by Name</a></button>--%>
-        <%--        </h2>--%>
     </form>
+
+<%--    <div style="width: 20%; float:left">--%>
+<%--    <table>--%>
+
+<%--    </table>--%>
+<%--</div>--%>
+
+<%--    <div style="width: 80%; float:right">--%>
+
+<%--    </div>--%>
 </center>
 <div align="center">
     <table border="1" cellpadding="5">
