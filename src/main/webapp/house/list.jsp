@@ -22,18 +22,28 @@
         <input type="text" name="name" placeholder="name">
         <input type="submit" value="Search">
     </form>
+    <form action="/houses?action=sort" method="post">
+        <select name="select" onchange="this.form.submit()">
+            <option value="">Search By Price</option>
+            <option value="one">Under 1000$</option>
+            <option value="two">1000$ - 2000$</option>
+            <option value="three"> Over 2000$</option>
+        </select>
+    </form>
 <div>
     <div style="width: 50%; float:left">
     <h2>Standard</h2>
-
-<c:forEach items="${standard}" var="standard" >
-        <a href="">${standard.name} </a>
+<c:forEach items="${standards}" var="standards" >
+        <a href="/standards?id=${standards.id}">${standards.name} </a><br>
 </c:forEach>
+        <a>a</a>
 </div>
 
     <div style="width: 50%; float:right">
         <h2>Type</h2>
-        <a>Link</a>
+        <c:forEach items="${types}" var="types" >
+            <a href="/types?id=${types.id}">${types.name} </a><br>
+        </c:forEach>
     </div>
 </div>
 </center>
@@ -46,19 +56,24 @@
             <th>Status</th>
             <th>Image</th>
             <th>Price</th>
+            <th>Type</th>
+            <th>Standard</th>
         </tr>
-                <c:forEach items="${houses}" var="houses" >
+<%--                <c:forEach items="${houses}" var="houses" >--%>
+                    <c:forEach var="i" begin="0" end="${houses.size()-1}" >
             <tr>
-                <td>${houses.name}</td>
-                <td>${houses.address}</td>
-                <td>${houses.status}</td>
-                <td><img width="100px" height="100px" src="${houses.image}"></td>
-                <td>${houses.price}</td>
+                <td>${houses.get(i).name}</td>
+                <td>${houses.get(i).address}</td>
+                <td>${houses.get(i).status}</td>
+                <td><img width="100px" height="100px" src="${houses.get(i).image}"></td>
+                <td>${houses.get(i).price}</td>
+                <td>${types1.get(i).name}</td>
+                <td>${standard1.get(i).name}</td>
                 <td>
-                    <a href="/houses?action=delete&id=${houses.id}">Delete</a>
+                    <a href="/houses?action=delete&id=${houses.get(i).id}">Delete</a>
                 </td>
                 <td>
-                    <a href="/houses?action=edit&id=${houses.id}">Edit</a>
+                    <a href="/houses?action=edit&id=${houses.get(i).id}">Edit</a>
                 </td>
 
 

@@ -170,4 +170,91 @@ public class HouseService implements IHouseService{
         }
         return houses;
     }
+
+    @Override
+    public List<House> sorfPriceUnder1000() {
+        List<House> houses = new ArrayList<>();
+        try (Connection connection = basicRepository.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("select * from house where price between 0 and 1000 order by price asc");) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int typeID = rs.getInt("typeID");
+                String designstyle = rs.getString("designstyle");
+                String address = rs.getString("address");
+                int maxpeople = Integer.parseInt(rs.getString("maxpeople"));
+                String basicUtilityId = rs.getString("basicUtility");
+                int standardId = Integer.parseInt(rs.getString("standardId"));
+                String status = rs.getString("status");
+                String image = rs.getString("image");
+                float price = rs.getFloat("price");
+                String description = rs.getString("description");
+                String extraUtilityId = rs.getString("extraUtility");
+                float evalue = rs.getFloat("evalue");
+                int countsOfOrder = rs.getInt("countsOfOrder");
+                houses.add(new House(id,name,typeID,designstyle,address,maxpeople,basicUtilityId,standardId,status,image,price,description,extraUtilityId,evalue,countsOfOrder));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return houses;
+    }
+
+    @Override
+    public List<House> sorfPrice1000to2000() {
+        List<House> houses = new ArrayList<>();
+        try (Connection connection = basicRepository.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("select * from house where price between 1000 and 2000 order by price asc");) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int typeID = rs.getInt("typeID");
+                String designstyle = rs.getString("designstyle");
+                String address = rs.getString("address");
+                int maxpeople = Integer.parseInt(rs.getString("maxpeople"));
+                String basicUtilityId = rs.getString("basicUtility");
+                int standardId = Integer.parseInt(rs.getString("standardId"));
+                String status = rs.getString("status");
+                String image = rs.getString("image");
+                float price = rs.getFloat("price");
+                String description = rs.getString("description");
+                String extraUtilityId = rs.getString("extraUtility");
+                float evalue = rs.getFloat("evalue");
+                int countsOfOrder = rs.getInt("countsOfOrder");
+                houses.add(new House(id,name,typeID,designstyle,address,maxpeople,basicUtilityId,standardId,status,image,price,description,extraUtilityId,evalue,countsOfOrder));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return houses;
+    }
+
+    @Override
+    public List<House> sorfPriceOver2000() {
+        List<House> houses = new ArrayList<>();
+        try (Connection connection = basicRepository.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("select * from house where price > 2000 order by price asc");) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int typeID = rs.getInt("typeID");
+                String designstyle = rs.getString("designstyle");
+                String address = rs.getString("address");
+                int maxpeople = Integer.parseInt(rs.getString("maxpeople"));
+                String basicUtilityId = rs.getString("basicUtility");
+                int standardId = Integer.parseInt(rs.getString("standardId"));
+                String status = rs.getString("status");
+                String image = rs.getString("image");
+                float price = rs.getFloat("price");
+                String description = rs.getString("description");
+                String extraUtilityId = rs.getString("extraUtility");
+                float evalue = rs.getFloat("evalue");
+                int countsOfOrder = rs.getInt("countsOfOrder");
+                houses.add(new House(id,name,typeID,designstyle,address,maxpeople,basicUtilityId,standardId,status,image,price,description,extraUtilityId,evalue,countsOfOrder));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return houses;
+    }
 }
